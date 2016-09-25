@@ -17,8 +17,8 @@
 		<!-- closing style tag -->
 		<script>
 		// opening script tag that adds JavaScript to page
-			var time = 0;
-			// declare variable, name it time, set it to 0
+			var time = 60;
+			// declare variable, name it time, set it to 60
 			var running = 0;
 			// declare variable, name it running, set it to 0
 			function startPause() {
@@ -47,12 +47,12 @@
 				// declare function, name it reset()
 				running = 0;
 				// set running to 0
-				time = 0;
-				// set time to 0
+				time = new Date.now();
+				//set time to 60
 				document.getElementById('startPause').innerHTML = "Start";
 				// find document element with id 'startPause' and change it to "Start"
-				document.getElementById("output").innerHTML = "00:00:00";
-				// find document element with id 'output' and change it to "00:00:00"
+				document.getElementById("output").innerHTML = "15:00:00";
+				// find document element with id 'output' and change it to "15:00:00"
 			}
 
 			function increment() {
@@ -61,8 +61,8 @@
 					// start if statement, when running EQUALS 1 execute the following code
 					setTimeout(function() {
 						// call setTimeout(function())
-						time++;
-						// increment time by 1
+						time--;
+						// decrement time by 1
 						var mins = Math.floor(time / 10 / 60);
 						// declare variable, name it mins, set it to ('time' divided by 10, then divided by 60, then round down to the nearest whole number)
 						var secs = Math.floor(time / 10);
@@ -76,6 +76,10 @@
 						if(secs < 10) {// start if statement, if 'secs' is LESS THAN 10, execute the following code
 							secs = "0" + secs;
 						// concantanate "0" to 'secs' and set it to 'secs'
+						}
+						if(mins == 0 && secs == 0) {
+							document.getElementById("output").innerHTML = "00:00:00";
+							// find document element with id 'output' and change it to "00:00:00"
 						}
 						document.getElementById('output').innerHTML = mins + ":" +  secs + ":" + tenths;
 						// find element with id 'output' and change it's value to 'mins' concantanate to ':' concantanate to 'secs' concantanate to ":" concantanate to 'tenths'
